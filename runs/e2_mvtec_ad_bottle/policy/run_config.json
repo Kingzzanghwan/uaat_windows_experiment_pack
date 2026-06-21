@@ -1,0 +1,15 @@
+{
+  "csv": "runs\\e2_mvtec_ad_bottle\\features.csv",
+  "n_calib": 17,
+  "n_test": 66,
+  "target_coverage": 0.8,
+  "c_wrong": 10.0,
+  "c_defer": 1.0,
+  "context_cols": [
+    "ctx_cat_bottle",
+    "ctx_brightness",
+    "ctx_contrast",
+    "ctx_blur_risk",
+    "ctx_saturation"
+  ]
+}

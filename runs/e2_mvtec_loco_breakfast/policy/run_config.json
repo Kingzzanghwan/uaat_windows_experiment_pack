@@ -1,0 +1,15 @@
+{
+  "csv": "runs\\e2_mvtec_loco_breakfast\\features.csv",
+  "n_calib": 55,
+  "n_test": 220,
+  "target_coverage": 0.8,
+  "c_wrong": 10.0,
+  "c_defer": 1.0,
+  "context_cols": [
+    "ctx_cat_breakfast_box",
+    "ctx_brightness",
+    "ctx_contrast",
+    "ctx_blur_risk",
+    "ctx_saturation"
+  ]
+}

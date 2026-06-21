@@ -1,0 +1,19 @@
+{
+  "csv": "runs_seed3\\e2_mvtec_loco\\seed_01\\features.csv",
+  "n_calib": 314,
+  "n_test": 1254,
+  "target_coverage": 0.95,
+  "c_wrong": 10.0,
+  "c_defer": 1.0,
+  "context_cols": [
+    "ctx_cat_splicing_connectors",
+    "ctx_cat_pushpins",
+    "ctx_cat_juice_bottle",
+    "ctx_cat_breakfast_box",
+    "ctx_cat_screw_bag",
+    "ctx_brightness",
+    "ctx_contrast",
+    "ctx_blur_risk",
+    "ctx_saturation"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "monotone_policy_net",
+  "context_cols": [
+    "ctx_cat_bottle",
+    "ctx_brightness",
+    "ctx_contrast",
+    "ctx_blur_risk",
+    "ctx_saturation"
+  ],
+  "state_dict": {
+    "b": -1.2021064758300781,
+    "w_u_raw": -0.8451430797576904,
+    "w_ctx": [
+      -1.1997500658035278,
+      -1.1998530626296997,
+      -1.1951218843460083,
+      -1.199898600578308,
+      -1.1442047357559204
+    ],
+    "best_loss": 4.834705829620361
+  }
+}

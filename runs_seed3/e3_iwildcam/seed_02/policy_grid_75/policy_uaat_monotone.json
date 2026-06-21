@@ -1,0 +1,24 @@
+{
+  "name": "monotone_policy_net",
+  "context_cols": [
+    "ctx_meta_location",
+    "ctx_meta_sequence",
+    "ctx_meta_year",
+    "ctx_meta_month",
+    "ctx_meta_day",
+    "ctx_meta_hour"
+  ],
+  "state_dict": {
+    "b": 0.22274799644947052,
+    "w_u_raw": 1.83558988571167,
+    "w_ctx": [
+      -0.3260355293750763,
+      -0.06166471913456917,
+      0.22115708887577057,
+      1.581782579421997,
+      -0.008782667107880116,
+      -0.05222564935684204
+    ],
+    "best_loss": 0.8020036220550537
+  }
+}

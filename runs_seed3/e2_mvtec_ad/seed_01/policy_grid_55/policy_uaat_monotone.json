@@ -1,0 +1,50 @@
+{
+  "name": "monotone_policy_net",
+  "context_cols": [
+    "ctx_cat_leather",
+    "ctx_cat_hazelnut",
+    "ctx_cat_bottle",
+    "ctx_cat_carpet",
+    "ctx_cat_metal_nut",
+    "ctx_cat_grid",
+    "ctx_cat_transistor",
+    "ctx_cat_capsule",
+    "ctx_cat_cable",
+    "ctx_cat_toothbrush",
+    "ctx_cat_screw",
+    "ctx_cat_wood",
+    "ctx_cat_zipper",
+    "ctx_cat_tile",
+    "ctx_cat_pill",
+    "ctx_brightness",
+    "ctx_contrast",
+    "ctx_blur_risk",
+    "ctx_saturation"
+  ],
+  "state_dict": {
+    "b": -0.8544105887413025,
+    "w_u_raw": 2.1661031246185303,
+    "w_ctx": [
+      -1.4438633918762207,
+      -0.7521814703941345,
+      -1.8434176445007324,
+      -0.11074114590883255,
+      -1.1169179677963257,
+      -0.25950488448143005,
+      -0.4432659447193146,
+      0.4750215411186218,
+      -0.30866938829421997,
+      0.8873437643051147,
+      -1.3758585453033447,
+      -1.4142487049102783,
+      -1.0678722858428955,
+      -1.8187261819839478,
+      0.10441923886537552,
+      -0.3656572699546814,
+      -0.7813714742660522,
+      -0.871399462223053,
+      -3.6471383571624756
+    ],
+    "best_loss": 2.8470773696899414
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "monotone_policy_net",
+  "context_cols": [
+    "ctx_cat_screw_bag",
+    "ctx_cat_pushpins",
+    "ctx_cat_splicing_connectors",
+    "ctx_cat_juice_bottle",
+    "ctx_cat_breakfast_box",
+    "ctx_brightness",
+    "ctx_contrast",
+    "ctx_blur_risk",
+    "ctx_saturation"
+  ],
+  "state_dict": {
+    "b": -0.671869158744812,
+    "w_u_raw": 3.599980592727661,
+    "w_ctx": [
+      0.6482159495353699,
+      -1.3449574708938599,
+      -1.570116639137268,
+      -0.5934253931045532,
+      -1.5470318794250488,
+      -1.695046067237854,
+      -2.4754412174224854,
+      -0.4426145851612091,
+      2.5111186504364014
+    ],
+    "best_loss": 2.481358528137207
+  }
+}

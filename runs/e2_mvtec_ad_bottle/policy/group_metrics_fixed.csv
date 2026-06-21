@@ -1,0 +1,2 @@
+policy,category,coverage,risk,wrong_auto_rate,auto_error_rate,defer_rate,n
+fixed,bottle,0.6212121212121212,4.166666666666667,0.3787878787878788,0.6097560975609756,0.3787878787878788,66

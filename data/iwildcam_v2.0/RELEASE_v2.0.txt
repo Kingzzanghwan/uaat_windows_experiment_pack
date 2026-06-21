@@ -1,0 +1,8 @@
+# Release notes for iWildCam2020
+
+## v2.0
+Feb 26, 2021: a) Created new split of the dataset such that the splits train, val-ID and test-ID do not overlap on the attribute date. b) For the iWildCam2021 challenge on Kaggle, multiple images are being removed that e.g include humans or pictures from indoors. We made the same updates. c) Resized all images to have height 448, keeping aspect ratio, and saved as jpeg. Jpeg compression is not lossless. d) Added in location 537. e) Put all metadata in one csv instead of multiple
+files. f) Added categories.csv that shows what species each label corresponds to.
+
+## v1.0
+Dec 9, 2020: First release.

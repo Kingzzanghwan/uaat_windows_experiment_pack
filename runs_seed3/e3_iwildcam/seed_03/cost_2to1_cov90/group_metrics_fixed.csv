@@ -1,0 +1,2 @@
+policy,wilds_split,coverage,risk,wrong_auto_rate,auto_error_rate,defer_rate,n
+fixed,test,0.8275104578065481,0.755789768876633,0.2916501133415905,0.3524428127647557,0.17248954219345192,42791

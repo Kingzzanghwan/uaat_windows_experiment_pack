@@ -1,0 +1,16 @@
+{
+  "csv": "runs_seed3\\e3_iwildcam\\seed_03\\features.csv",
+  "n_calib": 7314,
+  "n_test": 42791,
+  "target_coverage": 0.6,
+  "c_wrong": 5.0,
+  "c_defer": 1.0,
+  "context_cols": [
+    "ctx_meta_location",
+    "ctx_meta_sequence",
+    "ctx_meta_year",
+    "ctx_meta_month",
+    "ctx_meta_day",
+    "ctx_meta_hour"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "uncertainty_grid",
+  "alpha": 1.25,
+  "theta": 0.6284556143358351,
+  "calib_risk": 0.7621315789473685,
+  "calib_coverage": 0.69
+}

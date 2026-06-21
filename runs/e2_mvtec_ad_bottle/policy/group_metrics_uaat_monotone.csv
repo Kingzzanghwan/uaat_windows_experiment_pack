@@ -1,0 +1,2 @@
+policy,category,coverage,risk,wrong_auto_rate,auto_error_rate,defer_rate,n
+uaat_monotone,bottle,0.36363636363636365,2.0,0.13636363636363635,0.375,0.6363636363636364,66

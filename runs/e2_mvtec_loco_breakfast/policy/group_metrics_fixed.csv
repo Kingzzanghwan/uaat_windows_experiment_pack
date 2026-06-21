@@ -1,0 +1,2 @@
+policy,category,coverage,risk,wrong_auto_rate,auto_error_rate,defer_rate,n
+fixed,breakfast_box,0.8045454545454546,4.6045454545454545,0.4409090909090909,0.5480225988700564,0.19545454545454544,220

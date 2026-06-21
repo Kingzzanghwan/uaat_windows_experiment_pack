@@ -1,0 +1,26 @@
+{
+  "checkpoint": "runs_seed3\\e3_iwildcam\\seed_01\\train_extract\\iwildcam_resnet18.pt",
+  "csv": "runs_seed3\\e3_iwildcam\\seed_01\\features.csv",
+  "num_classes": 182,
+  "split_dict": {
+    "train": 0,
+    "val": 1,
+    "test": 2,
+    "id_val": 3,
+    "id_test": 4
+  },
+  "metadata_fields": [
+    "location",
+    "sequence",
+    "year",
+    "month",
+    "day",
+    "hour",
+    "minute",
+    "second",
+    "y",
+    "from_source_domain"
+  ],
+  "calib_split": "id_val",
+  "test_split": "test"
+}

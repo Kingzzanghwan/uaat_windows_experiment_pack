@@ -1,0 +1,31 @@
+{
+  "history": [
+    {
+      "epoch": 1,
+      "val_acc": 0.3658,
+      "test_acc": 0.3748
+    },
+    {
+      "epoch": 2,
+      "val_acc": 0.4518,
+      "test_acc": 0.4537
+    },
+    {
+      "epoch": 3,
+      "val_acc": 0.582,
+      "test_acc": 0.5801
+    },
+    {
+      "epoch": 4,
+      "val_acc": 0.638,
+      "test_acc": 0.6317
+    },
+    {
+      "epoch": 5,
+      "val_acc": 0.713,
+      "test_acc": 0.7123
+    }
+  ],
+  "best_val": 0.713,
+  "checkpoint": "runs\\e1_cifar_base_quick\\cifar10_resnet18.pt"
+}
