@@ -12,5 +12,6 @@
     "ctx_meta_month",
     "ctx_meta_day",
     "ctx_meta_hour"
-  ]
+  ],
+  "recalibrate_on_test": true
 }

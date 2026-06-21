@@ -20,5 +20,7 @@
       0.35493573546409607
     ],
     "best_loss": 1.6197261810302734
-  }
+  },
+  "test_margin_offset": -0.458875983953476,
+  "recalibrated_on_test": true
 }

@@ -33,7 +33,29 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--policy_steps", type=int, default=1200)
     p.add_argument("--context_prefix", default="ctx_")
     p.add_argument("--group_col", default="", help="Optional column for per-group summary, e.g. corruption or category")
+    p.add_argument(
+        "--recalibrate_on_test",
+        action="store_true",
+        help=(
+            "Coverage-calibrate every policy on the TEST inputs so each one actually "
+            "achieves --target_coverage on test (labels are NOT used; only the score / "
+            "decision-margin distribution is used to pick the cutoff). This removes the "
+            "calib->test coverage drift that otherwise makes coverage comparisons unfair "
+            "under domain shift. When this flag is omitted, behavior is identical to before."
+        ),
+    )
     return p.parse_args()
+
+
+def _quantile_cutoff_for_coverage(margin: np.ndarray, target_coverage: float) -> float:
+    """Return the cutoff c such that (margin > c) keeps ~target_coverage fraction.
+
+    Uses only the margin values (no labels), so this is a coverage calibration,
+    not a risk calibration -> no test-label leakage.
+    """
+    margin = np.asarray(margin, dtype=np.float64)
+    target_coverage = float(min(max(target_coverage, 1e-6), 1.0 - 1e-6))
+    return float(np.quantile(margin, 1.0 - target_coverage))
 
 
 def main() -> None:
@@ -70,8 +92,19 @@ def main() -> None:
 
     policies: list[tuple[str, object, np.ndarray, dict]] = []
 
+    # For each policy we keep the per-sample decision MARGIN on test
+    # (margin > cutoff  <=>  accept). When --recalibrate_on_test is set we
+    # re-pick each cutoff from the test margin distribution so every policy
+    # hits the same target coverage on test. Labels are never used here.
     fixed = fixed_threshold_policy(calib, args.target_coverage)
-    policies.append(("fixed", fixed, apply_fixed(test, fixed), fixed))
+    fixed_margin = test["score"].to_numpy(dtype=np.float64)
+    if args.recalibrate_on_test:
+        fixed_cut = _quantile_cutoff_for_coverage(fixed_margin, args.target_coverage)
+        fixed = {**fixed, "threshold": fixed_cut, "recalibrated_on_test": True}
+        fixed_accept = fixed_margin > fixed_cut
+    else:
+        fixed_accept = apply_fixed(test, fixed)
+    policies.append(("fixed", fixed, fixed_accept, fixed))
 
     ug = uncertainty_grid_policy(
         calib,
@@ -79,7 +112,17 @@ def main() -> None:
         c_wrong=args.c_wrong,
         c_defer=args.c_defer,
     )
-    policies.append(("uncertainty_grid", ug, apply_uncertainty_grid(test, ug), ug))
+    ug_margin = (
+        test["score"].to_numpy(dtype=np.float64)
+        - float(ug["alpha"]) * test["uncertainty"].to_numpy(dtype=np.float64)
+    )
+    if args.recalibrate_on_test:
+        ug_cut = _quantile_cutoff_for_coverage(ug_margin, args.target_coverage)
+        ug = {**ug, "theta": ug_cut, "recalibrated_on_test": True}
+        ug_accept = ug_margin > ug_cut
+    else:
+        ug_accept = apply_uncertainty_grid(test, ug)
+    policies.append(("uncertainty_grid", ug, ug_accept, ug))
 
     net = train_monotone_policy_net(
         calib,
@@ -93,7 +136,19 @@ def main() -> None:
         ),
     )
     tau = net.predict_tau(test)
-    policies.append(("uaat_monotone", net, test["score"].to_numpy() > tau, net.to_dict()))
+    # UAAT decision margin = score - tau(x). Accept if score > tau(x), i.e. margin > 0.
+    uaat_margin = test["score"].to_numpy(dtype=np.float64) - np.asarray(tau, dtype=np.float64)
+    uaat_dict = net.to_dict()
+    if args.recalibrate_on_test:
+        # Shift the (already-shaped) UAAT threshold by a single global offset so
+        # that test coverage matches target. This preserves tau(x)'s dependence
+        # on uncertainty/context (the learned shape) and only moves its height.
+        uaat_cut = _quantile_cutoff_for_coverage(uaat_margin, args.target_coverage)
+        uaat_accept = uaat_margin > uaat_cut
+        uaat_dict = {**uaat_dict, "test_margin_offset": uaat_cut, "recalibrated_on_test": True}
+    else:
+        uaat_accept = test["score"].to_numpy() > tau
+    policies.append(("uaat_monotone", net, uaat_accept, uaat_dict))
 
     rows = []
     decisions = test.copy()
@@ -129,6 +184,7 @@ def main() -> None:
             "c_wrong": args.c_wrong,
             "c_defer": args.c_defer,
             "context_cols": context_cols,
+            "recalibrate_on_test": bool(args.recalibrate_on_test),
         },
         out_dir / "run_config.json",
     )
