@@ -1,0 +1,16 @@
+{
+  "name": "monotone_policy_net",
+  "context_cols": [],
+  "state_dict": {
+    "b": -2.471204996109009,
+    "w_u_raw": -1.6375638246536255,
+    "w_ctx": [],
+    "best_loss": 2.310666084289551
+  },
+  "use_inputs": [
+    "score",
+    "uncertainty"
+  ],
+  "test_margin_offset": -0.027831380884795955,
+  "recalibrated_on_test": true
+}

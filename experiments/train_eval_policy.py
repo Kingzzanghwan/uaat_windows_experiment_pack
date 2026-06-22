@@ -44,6 +44,17 @@ def parse_args() -> argparse.Namespace:
             "under domain shift. When this flag is omitted, behavior is identical to before."
         ),
     )
+    p.add_argument(
+        "--use_inputs",
+        default="score,uncertainty,ctx",
+        help=(
+            "Comma-separated subset of inputs the UAAT monotone policy may use. "
+            "Options: score, uncertainty, ctx. 'score' is always implied (it is the "
+            "decision base). Examples for ablation: 'score' (confidence-only), "
+            "'score,uncertainty' (no context), 'score,ctx' (no uncertainty), "
+            "'score,uncertainty,ctx' (full, default). Only affects uaat_monotone."
+        ),
+    )
     return p.parse_args()
 
 
@@ -90,6 +101,22 @@ def main() -> None:
             pass
     context_cols = numeric_context_cols
 
+    # --- Ablation control: which inputs may the UAAT policy use? ---
+    use_inputs = {s.strip().lower() for s in args.use_inputs.split(",") if s.strip()}
+    use_inputs.add("score")  # score is always the decision base
+    use_uncertainty = "uncertainty" in use_inputs
+    use_ctx = "ctx" in use_inputs
+    # If uncertainty is ablated, zero it so tau(x) cannot depend on it (the
+    # softplus(w_u_raw)*uncertainty term becomes 0 for every sample). If ctx is
+    # ablated, hand the policy no context columns. Baselines (fixed,
+    # uncertainty_grid) are unaffected -- the ablation only concerns UAAT.
+    uaat_context_cols = context_cols if use_ctx else []
+    calib_uaat = calib.copy()
+    test_uaat = test.copy()
+    if not use_uncertainty:
+        calib_uaat["uncertainty"] = 0.0
+        test_uaat["uncertainty"] = 0.0
+
     policies: list[tuple[str, object, np.ndarray, dict]] = []
 
     # For each policy we keep the per-sample decision MARGIN on test
@@ -125,8 +152,8 @@ def main() -> None:
     policies.append(("uncertainty_grid", ug, ug_accept, ug))
 
     net = train_monotone_policy_net(
-        calib,
-        context_cols=context_cols,
+        calib_uaat,
+        context_cols=uaat_context_cols,
         cfg=PolicyTrainConfig(
             target_coverage=args.target_coverage,
             c_wrong=args.c_wrong,
@@ -135,10 +162,11 @@ def main() -> None:
             seed=args.seed,
         ),
     )
-    tau = net.predict_tau(test)
+    tau = net.predict_tau(test_uaat)
     # UAAT decision margin = score - tau(x). Accept if score > tau(x), i.e. margin > 0.
     uaat_margin = test["score"].to_numpy(dtype=np.float64) - np.asarray(tau, dtype=np.float64)
     uaat_dict = net.to_dict()
+    uaat_dict["use_inputs"] = sorted(use_inputs)
     if args.recalibrate_on_test:
         # Shift the (already-shaped) UAAT threshold by a single global offset so
         # that test coverage matches target. This preserves tau(x)'s dependence
@@ -185,6 +213,7 @@ def main() -> None:
             "c_defer": args.c_defer,
             "context_cols": context_cols,
             "recalibrate_on_test": bool(args.recalibrate_on_test),
+            "use_inputs": sorted(use_inputs),
         },
         out_dir / "run_config.json",
     )

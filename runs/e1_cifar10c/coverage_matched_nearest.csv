@@ -1,0 +1,5 @@
+﻿target_coverage,policy_base,policy_prop,coverage_base,coverage_prop,coverage_gap,risk_base,risk_prop,risk_delta_base_minus_prop,wrong_auto_base,wrong_auto_prop,source_base,source_prop
+0.6,fixed,uaat_monotone,0.6,0.6,0.0,0.667025,0.6030500000000001,0.0639749999999999,0.053405,0.04061,runs\e1_cifar10c\policy_cov60,runs\e1_cifar10c\policy_cov60
+0.7,fixed,uaat_monotone,0.7,0.7,0.0,0.7618750000000001,0.709825,0.05205000000000004,0.092375,0.081965,runs\e1_cifar10c\policy_cov70,runs\e1_cifar10c\policy_cov70
+0.8,fixed,uaat_monotone,0.8,0.8,0.0,0.9087,0.864425,0.04427499999999995,0.14174,0.132885,runs\e1_cifar10c\policy_cov80,runs\e1_cifar10c\policy_cov80
+0.9,fixed,uaat_monotone,0.9,0.9,0.0,1.104225,1.0704,0.033824999999999994,0.200845,0.19408,runs\e1_cifar10c\policy_cov90,runs\e1_cifar10c\policy_cov90

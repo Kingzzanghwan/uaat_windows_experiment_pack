@@ -1,0 +1,4 @@
+﻿policy,n_groups,mean_group_risk,median_group_risk,worst_group_risk,worst_group,best_group_risk,group_kind
+uaat_monotone,8,1.5415412523159053,1.8721436919138517,2.614665708123652,"(0.9965, 0.9967]",0.07257683215130019,10-quantile-bins of ctx_meta_location
+fixed,8,1.5470420709658494,1.869824040392798,2.6434219985621854,"(0.9965, 0.9967]",0.07659574468085106,10-quantile-bins of ctx_meta_location
+uncertainty_grid,8,1.5693486359758944,1.896197414959334,2.7419122933141624,"(0.9965, 0.9967]",0.0770685579196217,10-quantile-bins of ctx_meta_location

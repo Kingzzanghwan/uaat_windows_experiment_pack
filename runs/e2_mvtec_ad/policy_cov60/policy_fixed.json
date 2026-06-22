@@ -1,4 +1,5 @@
 {
   "name": "fixed",
-  "threshold": 0.07176592363999999
+  "threshold": 0.06696057944000001,
+  "recalibrated_on_test": true
 }

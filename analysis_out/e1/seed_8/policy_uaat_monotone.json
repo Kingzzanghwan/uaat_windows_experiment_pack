@@ -1,0 +1,39 @@
+{
+  "name": "monotone_policy_net",
+  "context_cols": [
+    "ctx_severity",
+    "ctx_corr_jpeg_compression",
+    "ctx_corr_motion_blur",
+    "ctx_corr_brightness",
+    "ctx_corr_gaussian_noise",
+    "ctx_corr_contrast",
+    "ctx_brightness",
+    "ctx_contrast",
+    "ctx_blur_risk",
+    "ctx_saturation"
+  ],
+  "state_dict": {
+    "b": 0.08415132761001587,
+    "w_u_raw": 0.7533523440361023,
+    "w_ctx": [
+      3.098679304122925,
+      -1.7817696332931519,
+      -0.9940011501312256,
+      -1.776869535446167,
+      2.0311665534973145,
+      -0.32576391100883484,
+      -0.6446781158447266,
+      -0.4897718131542206,
+      -0.04730008915066719,
+      -0.26064857840538025
+    ],
+    "best_loss": 0.8026134371757507
+  },
+  "use_inputs": [
+    "ctx",
+    "score",
+    "uncertainty"
+  ],
+  "test_margin_offset": -0.0444954872131348,
+  "recalibrated_on_test": true
+}

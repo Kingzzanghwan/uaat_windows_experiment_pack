@@ -1,0 +1,57 @@
+{
+  "name": "monotone_policy_net",
+  "context_cols": [
+    "ctx_cat_toothbrush",
+    "ctx_cat_grid",
+    "ctx_cat_capsule",
+    "ctx_cat_hazelnut",
+    "ctx_cat_carpet",
+    "ctx_cat_cable",
+    "ctx_cat_leather",
+    "ctx_cat_pill",
+    "ctx_cat_screw",
+    "ctx_cat_transistor",
+    "ctx_cat_metal_nut",
+    "ctx_cat_wood",
+    "ctx_cat_tile",
+    "ctx_cat_zipper",
+    "ctx_cat_bottle",
+    "ctx_brightness",
+    "ctx_contrast",
+    "ctx_blur_risk",
+    "ctx_saturation"
+  ],
+  "state_dict": {
+    "b": -1.0025190114974976,
+    "w_u_raw": -0.5728800296783447,
+    "w_ctx": [
+      -0.3307231664657593,
+      -0.5696593523025513,
+      -0.7006325125694275,
+      -0.6319664716720581,
+      -3.612964153289795,
+      -0.6694640517234802,
+      -3.711918830871582,
+      -0.4981158375740051,
+      -0.877376914024353,
+      -0.3240351974964142,
+      -0.6877985596656799,
+      -2.241779327392578,
+      -0.41655585169792175,
+      -0.5993936061859131,
+      -0.11213476955890656,
+      -1.0190911293029785,
+      -0.8238726854324341,
+      -0.9853395819664001,
+      -1.4234272241592407
+    ],
+    "best_loss": 2.677354335784912
+  },
+  "use_inputs": [
+    "ctx",
+    "score",
+    "uncertainty"
+  ],
+  "test_margin_offset": -0.036502338610237745,
+  "recalibrated_on_test": true
+}

@@ -1,0 +1,25 @@
+{
+  "csv": "runs\\e1_cifar10c\\features.csv",
+  "n_calib": 50000,
+  "n_test": 200000,
+  "target_coverage": 0.8,
+  "c_wrong": 5.0,
+  "c_defer": 1.0,
+  "context_cols": [
+    "ctx_severity",
+    "ctx_corr_jpeg_compression",
+    "ctx_corr_motion_blur",
+    "ctx_corr_brightness",
+    "ctx_corr_gaussian_noise",
+    "ctx_corr_contrast",
+    "ctx_brightness",
+    "ctx_contrast",
+    "ctx_blur_risk",
+    "ctx_saturation"
+  ],
+  "recalibrate_on_test": true,
+  "use_inputs": [
+    "score",
+    "uncertainty"
+  ]
+}

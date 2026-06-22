@@ -1,0 +1,4 @@
+﻿policy,n_groups,mean_group_risk,median_group_risk,worst_group_risk,worst_group,best_group_risk,group_kind
+uaat_monotone,5,0.864425,0.8371000000000001,1.4456250000000002,gaussian_noise,0.33804999999999996,raw values of corruption
+fixed,5,0.9087000000000002,0.8383,1.9135,gaussian_noise,0.27235,raw values of corruption
+uncertainty_grid,5,0.9087000000000002,0.8383,1.9135,gaussian_noise,0.27235,raw values of corruption
